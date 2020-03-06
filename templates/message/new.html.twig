@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+  {{ form_start(formMessage, {'attr' : { 'class' : 'text-center border border-light p-5'}})}}  
+   
+
+        <h1 class="h2-responsive mb-4 text-uppercase">Votre message</h1>
+  
+        <div class="md-form">
+          {{ form_widget(formMessage.receiver)}}
+          {{ form_label(formMessage.receiver) }}
+        </div>
+        {{ form_errors(formMessage.receiver) }}
+
+        <div class="md-form">
+          {{ form_widget(formMessage.body)}}
+          {{ form_label(formMessage.body) }}
+          {{ form_errors(formMessage.body) }}
+        </div>
+          
+   
+   {{ form_end(formMessage)}}  
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+     title
+{% endblock %}
+
+{% block body %}
+   
+        Envoyé(e) par : {{ message.sender.email }} <br>
+        {# Envoyé à : {{ message.receiver}} <br> #}
+        Message: {{ message.body}}<br> 
+        {# Commentaire #}
+
+
+{% endblock %}
+

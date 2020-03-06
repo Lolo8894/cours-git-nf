@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Next Formation{% endblock %}</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <!--Navbar -->
+        <nav class="mb-1 navbar navbar-expand-lg navbar-dark orange lighten-1">
+            <a class="navbar-brand" href="#">NextFormation</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item {{ (app.request.get('_route') == 'app_index') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ path('app_index') }}">Accueil</a>
+                </li>
+                <li class="nav-item {{ (app.request.get('_route') == 'app_cgv') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ path('app_cgv') }}">CGV</a>
+                </li>
+                <li class="nav-item {{ (app.request.get('_route') == 'app_about') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ path('app_about') }}">A propos</a>
+                </li>
+                {% if is_granted('ROLE_USER') %} {# Si je suis connecté #}
+                    <li class="nav-item {{ (app.request.get('_route') == 'message_index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ path('message_index') }}">Messages</a>
+                    </li>
+                    <li class="nav-item {{ (app.request.get('_route') == 'app_logout') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                {% else %} {# sinon je suis déconnecté #}
+                    <li class="nav-item {{ (app.request.get('_route') == 'user_register') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ path('user_register') }}">Inscription</a>
+                    </li>
+                    <li class="nav-item {{ (app.request.get('_route') == 'app_login') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                {% endif %}
+                
+                </ul>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item avatar">
+                    <a class="nav-link p-0" href="#">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+                        alt="avatar image" height="35">
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </nav>
+        <!--/.Navbar -->
+
+        <main {% block main_attr %}{% endblock %} class="mt-5 pt-5">
+            <div class="container">
+                {% block body %}{% endblock %}
+            </div>
+        </main>
+        <!-- Footer -->
+            <footer class="page-footer font-small orange lighten-1 pt-4">
+
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+
+                <!-- Grid row -->
+                <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-6 mt-md-0 mt-3">
+
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Footer Content</h5>
+                    <p>Here you can use rows and columns to organize your footer content.</p>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 4</a>
+                    </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 4</a>
+                    </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+            </div>
+            <!-- Footer Links -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+            </div>
+            <!-- Copyright -->
+
+            </footer>
+        <!-- Footer -->
+
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

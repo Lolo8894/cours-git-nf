@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Liste des messages
+{% endblock %}
+
+{% block body %}
+    {% for message in messages %}
+    {% if message.sender == app.user %}
+    <div class="text-right grey text-black w-100">
+    {% else %}
+        <div class="text-left">
+    {% endif %}
+
+
+        Envoyé(e) par : {{ message.sender.email }} <br>
+        Message: {{ message.body}}<br> 
+        <a class="btn btn-sm btn-dark float-right" href="{{ path('message_show', { 'id' : message.id})}}">Voir le détail de mon message </a>
+        <a class="btn btn-sm btn-orange float-right" href="{{ path('message_edit', { 'id' : message.id})}}">Modifier </a>
+        {# <a class="btn btn-sm btn-orange float-danger" href="{{ path('message_delete', { 'id' : message.id})}}">Supprimer </a> #}
+        <br><br>
+        {# Commentaire #}
+       
+    {% endfor %}
+
+
+{% endblock %}
+
